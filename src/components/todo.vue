@@ -12,19 +12,21 @@
     <table class="table table-bordered mt-5">
       <thead>
         <tr>
-          <th scope="col">Task</th>
-          <th scope="col">Status</th>
-          <th scope="col" class="text-center">#</th>
+          <th scope="col" width="240px">Task</th>
+          <th scope="col" width="120px">Status</th>
+          <th scope="col" class="text-center" width="40px">#</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(task, index) in tasks" :key="index">
-          <td width="240px">{{ task.Task }}</td>
-          <td class="pointer" v-on:click="changeStatus(index)" width="120px">
+          <td class="pointer" v-on:click="editTask(index)">
+            {{ task.Task }}
+          </td>
+          <td class="pointer" v-on:click="changeStatus(index)">
             {{ task.Status }}
           </td>
           <td>
-            <div class="text-center" @click="deleteTask(index)" width="110px">
+            <div class="text-center" @click="deleteTask(index)">
               <span class="fa fa-trash"></span>
             </div>
           </td>
@@ -74,8 +76,8 @@ export default {
       this.tasks.splice(index, 1);
     },
 
-    editTask() {
-      this.tasks.edit = !this.tasks.edit;
+    editTask(index) {
+      this.task = this.tasks[index].Task
     },
 
     changeStatus(index) {
