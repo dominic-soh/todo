@@ -10,7 +10,7 @@
     </div>
     <div v-else class="d-flex">
       <input v-model="task" placeholder="Enter Task" class="form-control" />
-      <button @click="submitTask" class="btn btn-primary rounded-0">
+      <button @click="updateTask" class="btn btn-primary rounded-0">
         Update
       </button>
     </div>
@@ -72,19 +72,19 @@ export default {
     submitTask() {
       if (this.task.length === 0) return;
 
-      if (this.editedTask === null){
-        this.tasks.push({
+      this.tasks.push({
           Task: this.task,
           Status: "To-do",
       });
-      }else{
-        this.tasks[this.editedTask].Task = this.task;
-      }
-
-      
 
       this.task = "";
       this.isEditing = false;
+    },
+
+    updateTask() {
+      this.tasks[this.editedTask].Task = this.task;
+      this.isEditing = false;
+      this.task = "";
     },
 
     deleteTask(index) {
