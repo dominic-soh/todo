@@ -1,15 +1,16 @@
 <template>
   <div class="container">
-    <h2 class="text-center mt-5">This is a freaking Todo app</h2>
+    <h2 class="text-center mt-5">This is a Halal Todo app</h2>
+    <h3 class="class text-center mt-5">Inshallah the task shall be completed</h3>
     <!-- Input -->
     <div v-if="!isEditing" class="d-flex">
-      <input v-model="task" placeholder="Enter Task" class="form-control" />
+      <input v-model="task" placeholder="Enter Halal Task" class="form-control" />
       <button @click="submitTask" class="btn btn-warning rounded-0">
         Submit
       </button>
     </div>
     <div v-else class="d-flex">
-      <input v-model="task" placeholder="Enter Task" class="form-control" />
+      <input v-model="task" placeholder="Enter Halal Task" class="form-control" />
       <button @click="updateTask" class="btn btn-primary rounded-0">
         Update
       </button>
@@ -55,6 +56,8 @@ export default {
       editedTask: null,
       task: "",
       statuses: ["To-do", "In progress", "Completed"],
+      haram: ["pork", "lard", "babi, alcohol, beer"],
+      halal: ["Jihad", "jihad", "Kill infidels", "Masjid", "Allah"],
       tasks: [
         {
           Task: "Jihad",
@@ -71,7 +74,7 @@ export default {
   methods: {
     submitTask() {
       if (this.task.length === 0) return;
-
+      this.halalCheck(this.task);
       this.tasks.push({
           Task: this.task,
           Status: "To-do",
@@ -101,7 +104,30 @@ export default {
       let newIndex = this.statuses.indexOf(this.tasks[index].Status);
       if (++newIndex > 2) newIndex = 0;
       this.tasks[index].Status = this.statuses[newIndex]
+    },
+
+    halalCheck(task) {
+      for (var i=0; i < this.haram.length; i++) {
+        if (this.haram[i] == task) {
+          this.$notify({
+            title: '<em>Haram!</em>',
+            text: 'Inshallah you will be destroyed',
+            duration: 60
+          });
+          console.log("Haram!")}
+      }
+      
+      for (i=0; i < this.halal.length; i++) {
+        if (this.halal[i] == task) {
+          this.$notify({
+            title: '<em>Halal!</em>',
+            text: 'You are on the road to Jannah',
+            duration: 60
+          });
+        console.log("Mashallah!")}
+      }
     }
+
   },
 };
 </script>

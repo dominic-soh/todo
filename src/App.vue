@@ -1,6 +1,7 @@
 <template>
   <div id='app'>
     <todo></todo>
+    <notifications />
   </div>
 </template>
 
@@ -8,9 +9,9 @@
 import todo from './components/todo.vue'
 
 export default {
-  name: 'App',
+  name: 'app',
   components: {
-    todo
+    todo,
   }
 }
 </script>
