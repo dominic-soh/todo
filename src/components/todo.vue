@@ -57,7 +57,7 @@ export default {
       task: "",
       statuses: ["To-do", "In progress", "Completed"],
       haram: ["pork", "lard", "babi", "alcohol", "beer"],
-      halal: ["Jihad", "jihad", "Kill infidels", "Masjid", "Allah"],
+      halal: ["jihad", "kill infidels", "masjid", "allah"],
       tasks: [
         {
           Task: "Jihad",
@@ -108,7 +108,7 @@ export default {
     },
 
     halalCheck(task) {
-      let text = task;
+      let text = task.toLowerCase();
       console.log(text);
       for (var i=0; i < this.haram.length; i++) {
         console.log(i)
