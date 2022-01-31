@@ -56,7 +56,7 @@ export default {
       editedTask: null,
       task: "",
       statuses: ["To-do", "In progress", "Completed"],
-      haram: ["pork", "lard", "babi, alcohol, beer"],
+      haram: ["pork", "lard", "babi", "alcohol", "beer"],
       halal: ["Jihad", "jihad", "Kill infidels", "Masjid", "Allah"],
       tasks: [
         {
@@ -86,6 +86,7 @@ export default {
 
     updateTask() {
       this.tasks[this.editedTask].Task = this.task;
+      this.halalCheck(this.task);
       this.isEditing = false;
       this.task = "";
     },
@@ -107,8 +108,11 @@ export default {
     },
 
     halalCheck(task) {
+      let text = task;
+      console.log(text);
       for (var i=0; i < this.haram.length; i++) {
-        if (this.haram[i] == task) {
+        console.log(i)
+        if (text.search(this.haram[i]) >= 0) {
           this.$notify({
             title: '<em>Haram!</em>',
             text: 'Inshallah you will be destroyed',
@@ -118,8 +122,8 @@ export default {
           console.log("Haram!")}
       }
       
-      for (i=0; i < this.halal.length; i++) {
-        if (this.halal[i] == task) {
+      for (var j=0; j < this.halal.length; j++) {
+        if (text.search(this.halal[j]) >= 0) {
           this.$notify({
             title: '<em>Halal!</em>',
             text: 'You are on the road to Jannah',
