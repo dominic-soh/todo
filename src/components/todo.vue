@@ -19,10 +19,12 @@
       </thead>
       <tbody>
         <tr v-for="(task, index) in tasks" :key="index">
-          <td>{{ task.Task }}</td>
-          <td class="pointer" v-on:click="changeStatus(index)">{{ task.Status }}</td>
+          <td width="240px">{{ task.Task }}</td>
+          <td class="pointer" v-on:click="changeStatus(index)" width="120px">
+            {{ task.Status }}
+          </td>
           <td>
-            <div class="text-center" @click="deleteTask(index)">
+            <div class="text-center" @click="deleteTask(index)" width="110px">
               <span class="fa fa-trash"></span>
             </div>
           </td>
@@ -71,21 +73,23 @@ export default {
     deleteTask(index) {
       this.tasks.splice(index, 1);
     },
-  },
 
-  editTask() {
-    this.tasks.edit = !this.tasks.edit;
-  },
+    editTask() {
+      this.tasks.edit = !this.tasks.edit;
+    },
 
-  changeStatus(index) {
-    console.log(index)
-  }
+    changeStatus(index) {
+      let newIndex = this.statuses.indexOf(this.tasks[index].Status);
+      if (++newIndex > 2) newIndex = 0;
+      this.tasks[index].Status = this.statuses[newIndex]
+    }
+  },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.pointer{
+.pointer {
   cursor: pointer;
 }
 </style>
