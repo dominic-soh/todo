@@ -2,10 +2,16 @@
   <div class="container">
     <h2 class="text-center mt-5">This is a freaking Todo app</h2>
     <!-- Input -->
-    <div class="d-flex">
+    <div v-if="!isEditing" class="d-flex">
       <input v-model="task" placeholder="Enter Task" class="form-control" />
       <button @click="submitTask" class="btn btn-warning rounded-0">
         Submit
+      </button>
+    </div>
+    <div v-else class="d-flex">
+      <input v-model="task" placeholder="Enter Task" class="form-control" />
+      <button @click="submitTask" class="btn btn-primary rounded-0">
+        Update
       </button>
     </div>
     <!-- Table -->
@@ -45,6 +51,8 @@ export default {
 
   data() {
     return {
+      isEditing: false,
+      editedTask: null,
       task: "",
       statuses: ["To-do", "In progress", "Completed"],
       tasks: [
@@ -64,12 +72,19 @@ export default {
     submitTask() {
       if (this.task.length === 0) return;
 
-      this.tasks.push({
-        Task: this.task,
-        Status: "To-do",
+      if (this.editedTask === null){
+        this.tasks.push({
+          Task: this.task,
+          Status: "To-do",
       });
+      }else{
+        this.tasks[this.editedTask].Task = this.task;
+      }
+
+      
 
       this.task = "";
+      this.isEditing = false;
     },
 
     deleteTask(index) {
@@ -77,7 +92,9 @@ export default {
     },
 
     editTask(index) {
-      this.task = this.tasks[index].Task
+      this.isEditing = true;
+      this.task = this.tasks[index].Task;
+      this.editedTask = index;
     },
 
     changeStatus(index) {
