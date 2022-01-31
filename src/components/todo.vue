@@ -112,7 +112,8 @@ export default {
           this.$notify({
             title: '<em>Haram!</em>',
             text: 'Inshallah you will be destroyed',
-            duration: 60
+            type: 'error',
+            duration: 100000
           });
           console.log("Haram!")}
       }
@@ -122,7 +123,8 @@ export default {
           this.$notify({
             title: '<em>Halal!</em>',
             text: 'You are on the road to Jannah',
-            duration: 60
+            type: 'success',
+            duration: 100000
           });
         console.log("Mashallah!")}
       }
