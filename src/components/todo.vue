@@ -1,16 +1,26 @@
 <template>
   <div class="container">
     <h2 class="text-center mt-5">This is a Halal Todo app</h2>
-    <h3 class="class text-center mt-5">Inshallah the task shall be completed</h3>
+    <h3 class="class text-center mt-5">
+      Inshallah the task shall be completed
+    </h3>
     <!-- Input -->
     <div v-if="!isEditing" class="d-flex">
-      <input v-model="task" placeholder="Enter Halal Task" class="form-control" />
+      <input
+        v-model="task"
+        placeholder="Enter Halal Task"
+        class="form-control"
+      />
       <button @click="submitTask" class="btn btn-warning rounded-0">
         Submit
       </button>
     </div>
     <div v-else class="d-flex">
-      <input v-model="task" placeholder="Enter Halal Task" class="form-control" />
+      <input
+        v-model="task"
+        placeholder="Enter Halal Task"
+        class="form-control"
+      />
       <button @click="updateTask" class="btn btn-primary rounded-0">
         Update
       </button>
@@ -76,8 +86,8 @@ export default {
       if (this.task.length === 0) return;
       this.halalCheck(this.task);
       this.tasks.push({
-          Task: this.task,
-          Status: "To-do",
+        Task: this.task,
+        Status: "To-do",
       });
 
       this.task = "";
@@ -104,36 +114,33 @@ export default {
     changeStatus(index) {
       let newIndex = this.statuses.indexOf(this.tasks[index].Status);
       if (++newIndex > 2) newIndex = 0;
-      this.tasks[index].Status = this.statuses[newIndex]
+      this.tasks[index].Status = this.statuses[newIndex];
     },
 
     halalCheck(task) {
       let text = task.toLowerCase();
-      console.log(text);
-      for (var i=0; i < this.haram.length; i++) {
-        console.log(i)
-        if (text.search(this.haram[i]) >= 0) {
-          this.$notify({
-            title: '<em>Haram!</em>',
-            text: 'Inshallah you will be destroyed',
-            type: 'error',
-            duration: 100000
-          });
-          console.log("Haram!")}
+      var regHaram = RegExp("\\b(" + this.haram.join("|") + ")\\b", "i");
+      console.log(regHaram);
+      if (!!text.match(regHaram) == true) {
+        this.$notify({
+          title: "<em>Haram!</em>",
+          text: "Inshallah you will be destroyed",
+          type: "error",
+          duration: 100000,
+        });
+        console.log("Haram!");
       }
-      
-      for (var j=0; j < this.halal.length; j++) {
-        if (text.search(this.halal[j]) >= 0) {
-          this.$notify({
-            title: '<em>Halal!</em>',
-            text: 'You are on the road to Jannah',
-            type: 'success',
-            duration: 100000
-          });
-        console.log("Mashallah!")}
+      var regHalal = RegExp("\\b(" + this.halal.join("|") + ")\\b", "i");
+      if (!!text.match(regHalal) == true) {
+        this.$notify({
+          title: "<em>Halal!</em>",
+          text: "You are on the road to Jannah",
+          type: "success",
+          duration: 100000,
+        });
+        console.log("Mashallah!");
       }
-    }
-
+    },
   },
 };
 </script>
