@@ -1,5 +1,7 @@
 # todo
 Just a simple todo app with a special twist :)
+
+Link to app: https://dominic-soh.github.io/todo/
 ## Project setup
 ```
 npm install
