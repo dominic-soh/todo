@@ -31,6 +31,7 @@
     <table class="table table-bordered mt-5">
       <thead>
         <tr>
+          <th scope="col" width="40px">Priority</th>
           <th scope="col" width="240px">Task</th>
           <th scope="col" width="120px">Status</th>
           <th scope="col" class="text-center" width="40px">#</th>
@@ -38,6 +39,9 @@
       </thead>
       <tbody>
         <tr v-for="(task, index) in tasks" :key="index">
+          <td class="pointer" v-on:click="editPriority(index)" v-bind:class="classObject(index)">
+            {{task.Priority}}
+          </td>
           <td class="pointer" v-on:click="editTask(index)">
             {{ task.Task }}
           </td>
@@ -67,6 +71,7 @@ export default {
       isEditing: false,
       editedTask: null,
       task: "",
+      priorities: ["High", "Normal", "Low"],
       statuses: ["To-do", "In progress", "Completed"],
       haram: ["pork", "lard", "babi", "alcohol", "beer", "gin", "vodka", "sex", "fap", "whiskey", "tequila", "cognac"],
       halal: ["jihad", "kill infidels", "masjid", "allah", "mashallah", "bismillah", "inshallah", "forgive"],
@@ -74,10 +79,12 @@ export default {
         {
           Task: "Jihad",
           Status: "To-do",
+          Priority: "High"
         },
         {
           Task: "Visit Masjid",
           Status: "In progress",
+          Priority: "Normal"
         },
       ],
     };
@@ -90,6 +97,7 @@ export default {
       this.tasks.push({
         Task: this.task,
         Status: "To-do",
+        Priority: "Normal"
       });
 
       this.task = "";
@@ -101,6 +109,19 @@ export default {
       this.halalCheck(this.task);
       this.isEditing = false;
       this.task = "";
+    },
+
+    classObject(index) {
+      switch(this.tasks[index].Priority){
+        case 'High':
+          return "table-danger";
+        
+        case 'Normal':
+          return "table-primary";
+
+        case 'Low':
+          return "table-light";
+      }
     },
 
     deleteTask(index) {
@@ -117,6 +138,12 @@ export default {
       let newIndex = this.statuses.indexOf(this.tasks[index].Status);
       if (++newIndex > 2) newIndex = 0;
       this.tasks[index].Status = this.statuses[newIndex];
+    },
+
+    editPriority(index) {
+      let newIndex = this.priorities.indexOf(this.tasks[index].Priority);
+      if (++newIndex > 2) newIndex = 0;
+      this.tasks[index].Priority = this.priorities[newIndex];
     },
 
     halalCheck(task) {
