@@ -1,5 +1,5 @@
 # todo
-
+Just a simple todo app with a special twist :)
 ## Project setup
 ```
 npm install
