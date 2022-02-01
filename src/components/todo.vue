@@ -7,6 +7,7 @@
     <!-- Input -->
     <div v-if="!isEditing" class="d-flex">
       <input
+        v-on:keyup.enter="submitTask"
         v-model="task"
         placeholder="Enter Halal Task"
         class="form-control"
@@ -17,6 +18,7 @@
     </div>
     <div v-else class="d-flex">
       <input
+        v-on:keyup.enter="updateTask"
         v-model="task"
         placeholder="Enter Halal Task"
         class="form-control"
