@@ -122,7 +122,7 @@ export default {
     halalCheck(task) {
       let text = task.toLowerCase();
       var regHaram = RegExp("\\b(" + this.haram.join("|") + ")\\b", "i");
-      console.log(regHaram);
+      // console.log(regHaram);
       if (!!text.match(regHaram) == true) {
         this.$notify({
           title: "<em>Haram!</em>",
@@ -130,7 +130,7 @@ export default {
           type: "error",
           duration: 100000,
         });
-        console.log("Haram!");
+        // console.log("Haram!");
       } else {
         var regHalal = RegExp("\\b(" + this.halal.join("|") + ")\\b", "i");
         if (!!text.match(regHalal) == true) {
@@ -140,7 +140,7 @@ export default {
             type: "success",
             duration: 100000,
           });
-          console.log("Mashallah!");
+          // console.log("Mashallah!");
         }
       }
     },
