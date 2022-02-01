@@ -131,16 +131,17 @@ export default {
           duration: 100000,
         });
         console.log("Haram!");
-      }
-      var regHalal = RegExp("\\b(" + this.halal.join("|") + ")\\b", "i");
-      if (!!text.match(regHalal) == true) {
-        this.$notify({
-          title: "<em>Halal!</em>",
-          text: "You are on the road to Jannah",
-          type: "success",
-          duration: 100000,
-        });
-        console.log("Mashallah!");
+      } else {
+        var regHalal = RegExp("\\b(" + this.halal.join("|") + ")\\b", "i");
+        if (!!text.match(regHalal) == true) {
+          this.$notify({
+            title: "<em>Halal!</em>",
+            text: "You are on the road to Jannah",
+            type: "success",
+            duration: 100000,
+          });
+          console.log("Mashallah!");
+        }
       }
     },
   },
