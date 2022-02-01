@@ -68,8 +68,8 @@ export default {
       editedTask: null,
       task: "",
       statuses: ["To-do", "In progress", "Completed"],
-      haram: ["pork", "lard", "babi", "alcohol", "beer"],
-      halal: ["jihad", "kill infidels", "masjid", "allah"],
+      haram: ["pork", "lard", "babi", "alcohol", "beer", "gin", "vodka", "sex", "fap", "whiskey", "tequila", "cognac"],
+      halal: ["jihad", "kill infidels", "masjid", "allah", "mashallah", "bismillah", "inshallah", "forgive"],
       tasks: [
         {
           Task: "Jihad",
