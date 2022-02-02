@@ -1,7 +1,10 @@
 <template>
   <div class="container">
     <h2 class="text-center mt-5">This is a Halal Todo app</h2>
-    <h3 class="class text-center mt-5">
+    <div class="img-container">
+      <img src="../assets/Halal.png" style="width: 15vw" />
+    </div>
+    <h3 class="class text-center mt-3">
       Inshallah the task shall be completed
     </h3>
     <!-- Input -->
@@ -39,8 +42,12 @@
       </thead>
       <tbody>
         <tr v-for="(task, index) in tasks" :key="index">
-          <td class="pointer" v-on:click="editPriority(index)" v-bind:class="classObject(index)">
-            {{task.Priority}}
+          <td
+            class="pointer"
+            v-on:click="editPriority(index)"
+            v-bind:class="classObject(index)"
+          >
+            {{ task.Priority }}
           </td>
           <td class="pointer" v-on:click="editTask(index)">
             {{ task.Task }}
@@ -73,18 +80,44 @@ export default {
       task: "",
       priorities: ["High", "Normal", "Low"],
       statuses: ["To-do", "In progress", "Completed"],
-      haram: ["pork", "lard", "babi", "alcohol", "beer", "gin", "vodka", "sex", "fap", "whiskey", "tequila", "cognac"],
-      halal: ["jihad", "kill infidels", "masjid", "allah", "mashallah", "bismillah", "inshallah", "forgive"],
+      haram: [
+        "pork",
+        "lard",
+        "babi",
+        "alcohol",
+        "beer",
+        "gin",
+        "vodka",
+        "sex",
+        "fap",
+        "whiskey",
+        "tequila",
+        "cognac",
+      ],
+      halal: [
+        "jihad",
+        "kill infidels",
+        "masjid",
+        "allah",
+        "mashallah",
+        "bismillah",
+        "inshallah",
+        "forgive",
+        "bomb",
+        "quran",
+        "koran",
+        "muhammad"
+      ],
       tasks: [
         {
           Task: "Jihad",
           Status: "To-do",
-          Priority: "High"
+          Priority: "High",
         },
         {
           Task: "Visit Masjid",
           Status: "In progress",
-          Priority: "Normal"
+          Priority: "Normal",
         },
       ],
     };
@@ -97,7 +130,7 @@ export default {
       this.tasks.push({
         Task: this.task,
         Status: "To-do",
-        Priority: "Normal"
+        Priority: "Normal",
       });
 
       this.task = "";
@@ -112,14 +145,14 @@ export default {
     },
 
     classObject(index) {
-      switch(this.tasks[index].Priority){
-        case 'High':
+      switch (this.tasks[index].Priority) {
+        case "High":
           return "table-danger";
-        
-        case 'Normal':
+
+        case "Normal":
           return "table-primary";
 
-        case 'Low':
+        case "Low":
           return "table-light";
       }
     },
@@ -179,5 +212,8 @@ export default {
 <style scoped>
 .pointer {
   cursor: pointer;
+}
+.img-container {
+  text-align: center;
 }
 </style>
