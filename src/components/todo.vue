@@ -1,6 +1,9 @@
 <template>
   <div class="container">
     <h2 class="text-center mt-5">This is a Halal Todo app</h2>
+    <center>
+    <img src="../assets/Halal.png" style="width:15vw;"/>
+    </center>
     <h3 class="class text-center mt-5">
       Inshallah the task shall be completed
     </h3>
