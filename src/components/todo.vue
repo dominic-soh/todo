@@ -2,7 +2,7 @@
   <div class="container">
     <h2 class="text-center mt-5">This is a Halal Todo app</h2>
     <center>
-    <img src="../assets/Halal.png" style="width:15vw;"/>
+      <img src="../assets/Halal.png" style="width:15vw;"/>
     </center>
     <h3 class="class text-center mt-5">
       Inshallah the task shall be completed
@@ -37,7 +37,7 @@
           <th scope="col" width="40px">Priority</th>
           <th scope="col" width="240px">Task</th>
           <th scope="col" width="120px">Status</th>
-          <th scope="col" class="text-center" width="40px">#</th>
+          <th scope="col" class="text-center" width="40px">Delete</th>
         </tr>
       </thead>
       <tbody>
