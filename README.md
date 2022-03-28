@@ -1,5 +1,6 @@
 # todo
 Just a simple todo app with a special twist :)
+All content are just for fun and do not represent my personal views. 
 
 Link to app: https://dominic-soh.github.io/todo/
 ## Project setup
